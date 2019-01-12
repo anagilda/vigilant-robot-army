@@ -2,7 +2,7 @@ import time
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from my_mail import send_email
+from emailing import send_email
 
 # Download drivers from seleniumhq website
 browser = webdriver.Chrome('./chromedriver')
