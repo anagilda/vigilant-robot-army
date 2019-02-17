@@ -35,22 +35,24 @@ def fetch_data(url, classes, lists, base_url=None, limit=1):
                 brand = anchor.contents[0]
                 print()
                 print(i, brand, anchor_href)
+                
                 # Find each model
                 page_source = requests.get(anchor_href)
                 html = page_source.text
                 soup = BeautifulSoup(html, 'html.parser')
                 for link in soup.find_all('div', class_='makers'):
-                    list_items = link.find_all('li')
+                    list_items = link.find_all('a')
+
                     num_items = len(list_items)
                     if limit is None or num_items < limit:
                         limit = num_items
-                    for i, li in enumerate(list_items[:limit], 1):
-                        for anchor in li.find_all('a'):
-                            anchor_href = base_url + anchor.get('href')
-                            for span in anchor.find_all('span'):
-                                item_name = span.string
-                                data[item_name] = anchor_href
-                                print("\t", i, brand, item_name, "-", anchor_href)
+
+                    for i, anchor in enumerate(list_items[:limit]):
+                        anchor_href = base_url + anchor.get('href')
+                        item_name = anchor.find('span').get_text(" ")
+
+                        data[item_name] = anchor_href
+                        print("\t", i, brand, item_name, "-", anchor_href)
 
     with open('data.json', 'w') as f:
         json.dump(data, f)
