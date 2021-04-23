@@ -9,21 +9,21 @@ def fetch_data(url, classes, lists, base_url=None, limit=1):
     '''
     Fetches data about phones from a url (gsmarena homepage or brand list).
 
-    Requires: 
+    Requires:
         - url (str): url from where to gather information.
         - classes (str): class from container div element to select.
         - lists (str): html list element to select.
         - base_url (str - optional): homepage url.
         - limit (int - optional): maximum number of phones per brand).
     Ensures:
-        - data.json (file): Saves a json file with phone brand and model, and 
-          gsmarena link with details, for each phone. 
+        - data.json (file): Saves a json file with phone brand and model, and
+          gsmarena link with details, for each phone.
     '''
     if base_url is None:
         base_url = url
 
     data = {}
-    
+
     # Find each brand
     page_source = requests.get(url)
     html = page_source.text
@@ -35,7 +35,7 @@ def fetch_data(url, classes, lists, base_url=None, limit=1):
                 brand = anchor.contents[0]
                 print()
                 print(i, brand, anchor_href)
-                
+
                 # Find each model
                 page_source = requests.get(anchor_href)
                 html = page_source.text
