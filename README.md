@@ -1,6 +1,9 @@
 # vigilant-robot-army
 Tiny robots I created with Python - web scrapers, bots...
 
+### Product images
+
+Scrapes a store website to find all images of a product in a slideshow and download them, with numbered file names.
 
 ### Language options
 Scrapes a website to find options available for a given `<select>` element, even if they are added by javascript and take a while to load. If the options change, an email is sent to a given email address.

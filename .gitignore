@@ -1,0 +1,18 @@
+# vs code
+.vscode
+
+# pycharm
+.idea
+
+# virtual environment
+venv
+
+# Logs
+*.log
+
+# cache
+__pycache__
+
+# generated files
+product_images/*.png
+product_images/images.txt
